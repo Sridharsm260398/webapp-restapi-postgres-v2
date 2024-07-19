@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "This is a sample server S-cart server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/)",
+    "description": "This is a sample S-cart swagger to perform all operations.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/)",
     "version": "1.0.7",
     "title": "Swagger S-cart",
     "termsOfService": "http://swagger.io/terms/",
@@ -13,7 +13,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8000/",
+      "url": "https://webapp-rest-api-postgres-v2-sridhar.onrender.com/",
       "description": "Generated server url"
     }
   ],
