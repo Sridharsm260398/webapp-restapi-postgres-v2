@@ -76,7 +76,8 @@ exports.signupUser = async (req, res) => {
       try {
         const url = `${req.protocol}://${req.get('host')}/profiles/uploads`;
         await new Email(req.body, url).sendWelcome();
-        createSendToken(req.body, 201, req, res);
+        createSendToken( userID , 201, req, res);
+        console.log(userID)
         console.log(email);
         //  await transporter.sendMail({
         //   to: email,

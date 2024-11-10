@@ -46,7 +46,10 @@ module.exports = class Email {
     console.log(process.env.EMAIL_FROM)
     await this.send('welcome', 'Welcome to the S-cart Family!');
   }
-
+  async sendLogin() {
+    console.log(process.env.EMAIL_FROM)
+    await this.send('login', 'Login Successfull to S-cart Family!');
+  }
   async sendPasswordReset() {
     await this.send(
       'passwordReset',

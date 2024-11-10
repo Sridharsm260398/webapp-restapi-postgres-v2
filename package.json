@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon",
-    "debug": "ndb nodemon"
+    "debug": "ndb nodemon",
+    "dev":"nodemon src/data/dev-data.js"
   },
   "author": "Sridhar",
   "license": "ISC",
