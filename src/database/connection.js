@@ -1,13 +1,13 @@
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
 dotenv.config({ path: './src/config.env' })
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'postgres',
-    port: 5432, 
-   });
+// const pool = new Pool({
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'postgres',
+//     password: 'postgres',
+//     port: 5432, 
+//    });
 /*    const pool = new Pool({
     user: 'default',
     host: process.env.DB_HOST,
@@ -19,9 +19,9 @@ const pool = new Pool({
     },
    }); */
  //  console.log(process.env.POSTGRES_URL)
- /*   const pool = new Pool({
+  const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
-  }) */
+  })
 
    pool.connect()
    .then(() => {
