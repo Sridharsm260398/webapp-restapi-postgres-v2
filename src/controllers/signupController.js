@@ -54,8 +54,8 @@ exports.signupUser = async (req, res) => {
     const values = [
       email,
       hashPwd,
-     password,
-     // forget_password,
+     // password,
+      forget_password,
       phone_number,
       first_name,
       last_name,
