@@ -1,3 +1,4 @@
 {
-    "angular-schematics.forcedDependencies": {}
+    "angular-schematics.forcedDependencies": {},
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

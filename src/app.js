@@ -29,6 +29,9 @@ const { STATUS_CODES } = require('http');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const checkAuth =require('./middleware/check.auth')
 const dotenv = require('dotenv');
+const Email = require('./utils/email');
+const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 dotenv.config({ path: './src/config.env' })
 const app = express();
 app.use(cors());
@@ -106,6 +109,48 @@ app.use('/api/v1/products', productRoute);
 app.use('/api/v1/users', passwordChangeRoute);
 app.use('/api/v1/users', invoiceRoute);
 app.use('/profile', profileRoute);
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key:process.env.MAIL_API_KEY   ,
+    },
+  })
+);
+app.post('/submit-form', async (req, res) => {
+  try {
+      const { name, phone, email, subject, message } = req.body;
+
+      // Check if all fields are provided
+      if (!name || !phone || !email || !subject || !message) {
+          return res.status(400).json({ message: 'All fields are required.' });
+      }
+      console.log('Form Data:', { name,phone, email, subject, message });
+      const data = `
+          <h1>Form Submission Details</h1>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Message:</strong> ${phone}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <p><strong>Message:</strong> ${message}</p>
+          
+      `;
+      await transporter.sendMail({
+          to: "sridharsmwork@gmail.com", 
+          from: "sridharsmwork@gmail.com",
+          subject: `Form Submission Confirmation from ${email}`, 
+          html: data,
+      });
+
+      res.status(200).json({
+          message: 'Form submitted successfully!',
+          data: { name, email, subject, message },
+      });
+  } catch (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ message: 'Failed to send email. Please try again later.' });
+  }
+});
+
 app.all('*', (req, res, next) => {
   return res.status(404).json({
     error: {
